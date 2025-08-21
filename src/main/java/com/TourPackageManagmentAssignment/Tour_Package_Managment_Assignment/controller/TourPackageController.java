@@ -1,23 +1,36 @@
 package com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.controller;
 
+import com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.advices.ResourceNotFoundErrorResponse;
+import com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.advices.ValidationErrorResponse;
 import com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.dto.TourPackageDto;
 import com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.exceptions.LocationNotNullException;
 import com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.exceptions.ResourceNotFoundException;
 import com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.service.TourPackageService;
+import com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.swaggerdocs.TourApiDocs;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/tours")
-public class TourPackageController {
+@Tag(name = "Tour Package APIs")
+public class TourPackageController implements TourApiDocs {
 
     @Autowired
     private TourPackageService tourPackageService;
+
 
     @GetMapping()
     public ResponseEntity<?> getALlPackages()
@@ -70,8 +83,6 @@ public class TourPackageController {
             throw new LocationNotNullException("Please Enter location in above url like location=leh");
         }
     }
-
-
 
 
 }

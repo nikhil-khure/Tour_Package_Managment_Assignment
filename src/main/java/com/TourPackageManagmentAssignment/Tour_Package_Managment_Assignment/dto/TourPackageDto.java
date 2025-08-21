@@ -1,6 +1,8 @@
 package com.TourPackageManagmentAssignment.Tour_Package_Managment_Assignment.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
+import jdk.jfr.Description;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +11,7 @@ import lombok.Setter;
 public class TourPackageDto {
 
     @NotBlank(message = "Image URL is required")
+    @Schema(description = "Image URL link")
     private String imgurl;
 
     @NotNull(message = "Discount is required")
@@ -17,10 +20,12 @@ public class TourPackageDto {
     private Float discountInPercentage;
 
     @NotBlank(message = "Title is required")
+    @Schema(description = "Title of the trip")
     @Size(min = 3, max = 100, message = "Title must be between 3 and 100 characters")
     private String title;
 
     @NotBlank(message = "Description is required")
+    @Schema(description = "Full details about trip")
     @Size(max = 1000, message = "Description cannot exceed 1000 characters")
     private String description;
 

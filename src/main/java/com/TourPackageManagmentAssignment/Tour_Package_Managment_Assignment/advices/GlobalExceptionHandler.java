@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException exception)
     {
-        ErrorResponse errorResponse = new ErrorResponse();
+        ResourceNotFoundErrorResponse errorResponse = new ResourceNotFoundErrorResponse();
         errorResponse.setStatus(HttpStatus.NOT_FOUND);
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setLocalDateTime(LocalDateTime.now());
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
                 .map(error -> error.getDefaultMessage())
                 .collect(Collectors.toList());
 
-        ErrorResponse errorResponse = new ErrorResponse();
+        ValidationErrorResponse errorResponse = new ValidationErrorResponse();
         errorResponse.setStatus(HttpStatus.BAD_REQUEST);
         errorResponse.setMessage("Invalid input error");
         errorResponse.setSubErrors(errors);
@@ -46,7 +46,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(LocationNotNullException.class)
     public ResponseEntity<?> handleNotNullLocationException(LocationNotNullException exception)
     {
-        ErrorResponse errorResponse = new ErrorResponse();
+        ResourceNotFoundErrorResponse errorResponse = new ResourceNotFoundErrorResponse();
         errorResponse.setStatus(HttpStatus.BAD_REQUEST);
         errorResponse.setMessage(exception.getMessage());
         errorResponse.setLocalDateTime(LocalDateTime.now());
