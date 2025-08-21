@@ -36,7 +36,12 @@ public class TourPackageDto {
     @Positive(message = "Actual price must be greater than 0")
     private Double actualPrice;
 
-    @NotNull(message = "Discounted price is required")
-    @Positive(message = "Discounted price must be greater than 0")
     private Double discountedPrice;
+
+    public Double getDiscountedPrice() {
+        if (actualPrice != null && discountInPercentage != null) {
+            return actualPrice - (actualPrice * discountInPercentage / 100);
+        }
+        return null;
+    }
 }

@@ -30,6 +30,8 @@ public class TourPackageService {
     }
 
     public void createPackage(TourPackageDto tourPackageData) {
+        Double discounted = tourPackageData.getActualPrice() - (tourPackageData.getActualPrice() * tourPackageData.getDiscountInPercentage() / 100);
+        tourPackageData.setDiscountedPrice(discounted);
         TourPackageEntity tourPackageEntity = modelMapper.map(tourPackageData,TourPackageEntity.class);
         tourPackageEntityRepository.save(tourPackageEntity);
     }
